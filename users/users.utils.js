@@ -3,12 +3,12 @@ import client from "../client";
 
 export const getUser = async (Authorization) => {
   try {
-      if(!Authorization){
-          return null;
-      }
-    const { id } =  jwt.verify(Authorization, process.env.SECRET_KEY);
+    if (!Authorization) {
+      return null;
+    }
+    const { id } = jwt.verify(Authorization, process.env.SECRET_KEY);
     const user = await client.user.findUnique({ where: { id } });
-    
+
     if (user) {
       return user;
     } else {
@@ -18,3 +18,32 @@ export const getUser = async (Authorization) => {
     return null;
   }
 };
+
+// export const protectedResolver = (ourResolver) => (
+//   root,
+//   args,
+//   context,
+//   info
+// ) => {
+//   if (!context.loggedInUser) {
+//     return {
+//       ok: false,
+//       error: "Please log in to perform this action.",
+//     };
+//   }
+//   return ourResolver(root, args, context, info);
+// };
+
+
+export function protectedResolver(ourResolver){
+  return function (root, args, context, info) {
+    if (!context.loggedInUser) {
+      return {
+        ok: false,
+        error: "Please log in to perform this action.",
+      };
+    }
+    return ourResolver(root, args, context, info);
+  };
+
+}
