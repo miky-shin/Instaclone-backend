@@ -32,7 +32,6 @@ export default {
       if (!loggedInUser) {
         return false;
       }
-      console.log(id);
       const exists = await client.user.count({
         where: {
           username: loggedInUser.username,
