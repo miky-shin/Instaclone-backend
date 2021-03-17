@@ -23,6 +23,7 @@ export default {
         },
       }),
     isMe: ({ id }, _, { loggedInUser }) => {
+      console.log(loggedInUser);
       if (!loggedInUser) {
         return false;
       }
