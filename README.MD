@@ -8,4 +8,5 @@
 - [ ] Edit Profile
 - [ ] Follow User
 - [ ] Unfollow User
-- [ ] Change Avatar (Image Upload)
+- [ ] Change Avatar(Image Upload)
+- [x] S3 Image Upload
