@@ -13,9 +13,10 @@ export default {
           },
         },
       }),
+    likes: ({ id }) => client.like.count({ where: { photoId: id } }),
   },
   Hashtag: {
-    photos: ({ id }, { page }, {loggedinUser}) => {
+    photos: ({ id }, { page }, { loggedinUser }) => {
       console.log(page);
       return client.hashtag
         .findUnique({
