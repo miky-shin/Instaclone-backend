@@ -8,8 +8,6 @@ import { typeDefs, resolvers } from "./schema";
 import { getUser } from "./users/users.utils";
 import pubsub from "./pubsub";
 
-console.log(pubsub);
-
 const PORT = process.env.PORT;
 const apollo = new ApolloServer({
   typeDefs,
@@ -18,7 +16,7 @@ const apollo = new ApolloServer({
     if (ctx.req) {
       //ws는 req를 하지 않음
       return {
-        loggedInUser: await getUser(ctx.req.headers.authorization),
+        loggedInUser: await getUser(ctx.req.headers.token),
       };
     } else {
       const {
@@ -30,11 +28,11 @@ const apollo = new ApolloServer({
     }
   },
   subscriptions: {
-    onConnect: async ({ Authorization }) => {
-      if (!Authorization) {
+    onConnect: async ({ token }) => {
+      if (!token) {
         throw new Error("You can't listen(You need to log In).");
       }
-      const loggedInUser = await getUser(Authorization);
+      const loggedInUser = await getUser(token);
       return {
         loggedInUser,
       };
