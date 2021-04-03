@@ -3,7 +3,7 @@ import { protectedResolver } from "../../users/users.utils";
 
 export default {
   Mutation: {
-    togglelike: protectedResolver(async (_, { id }, { loggedInUser }) => {
+    toggleLike: protectedResolver(async (_, { id }, { loggedInUser }) => {
       const photo = await client.photo.findUnique({
         where: {
           id,
