@@ -33,7 +33,7 @@ export default {
         //       where: CommentWhere,
         //     });
         //   } else {
-        await client.comment.create({
+        const newComment = await client.comment.create({
           data: {
             payload,
             user: {
@@ -51,6 +51,7 @@ export default {
         //}
         return {
           ok: true,
+          id: newComment.id,
         };
       }
     ),
