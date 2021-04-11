@@ -22,6 +22,10 @@ export default {
           },
         },
       }),
+    photos: ({ id }) =>
+      client.photo.findMany({
+        where: { userId: id },
+      }),
     isMe: ({ id }, _, { loggedInUser }) => {
       if (!loggedInUser) {
         return false;
