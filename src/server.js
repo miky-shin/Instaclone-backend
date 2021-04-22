@@ -12,6 +12,7 @@ const PORT = process.env.PORT;
 const apollo = new ApolloServer({
   typeDefs,
   resolvers,
+  playground: true,
   context: async (ctx) => {
     if (ctx.req) {
       //ws는 req를 하지 않음
