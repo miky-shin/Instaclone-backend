@@ -5,7 +5,7 @@ export default {
     totalPhotos: ({ id }) =>
       client.user.count({
         where: {
-          photos: {
+          Photos: {
             some: {
               id,
             },
