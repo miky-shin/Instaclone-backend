@@ -32,7 +32,7 @@ export default {
           },
         },
       }),
-    photos: ({ id }) =>
+    Photos: ({ id }) =>
       client.photo.findMany({
         where: { userId: id },
       }),
