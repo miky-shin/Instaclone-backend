@@ -2,6 +2,16 @@ import client from "../client";
 
 export default {
   User: {
+    totalPhotos: ({ id }) =>
+      client.user.count({
+        where: {
+          photos: {
+            some: {
+              id,
+            },
+          },
+        },
+      }),
     totalFollowing: ({ id }) =>
       client.user.count({
         where: {
