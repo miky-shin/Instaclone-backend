@@ -87,6 +87,7 @@ export default {
         pubsub.publish(NEW_MESSAGE, { roomUpdates: { ...newMessage } });
         return {
           ok: true,
+          id: newMessage.id,
         };
       }
     ),
